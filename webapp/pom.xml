@@ -8,8 +8,49 @@
     <name>huanmuzhen_webapp</name>
     <packaging>war</packaging>
 	
+	<properties>
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<slf4j.version>1.6.4</slf4j.version>
+		<logback.version>1.0.3</logback.version>
+	</properties>
+	
 	<dependencies>
-		<!-- JavaEE -->
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Spring -->
+		<dependency>
+		   <groupId>org.springframework</groupId>
+           <artifactId>spring-webmvc</artifactId>
+           <version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 	</dependencies>
 	
     <build>
