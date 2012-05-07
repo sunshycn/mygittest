@@ -10,7 +10,7 @@
     </context-param>
 	
 	<!-- Spring Security -->
-<!-- 	<filter>
+ 	<filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
@@ -18,7 +18,7 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
- -->
+
 	<!-- Spring MVC -->
 	 <servlet>
         <servlet-name>appServlet</servlet-name>
@@ -28,6 +28,7 @@
             <param-value>/WEB-INF/spring/mvc-context.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
         <servlet-name>appServlet</servlet-name>
