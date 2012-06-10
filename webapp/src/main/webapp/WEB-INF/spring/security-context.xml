@@ -6,9 +6,16 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd" >
 		
+	<http pattern="/css/**" security="none" />
+    <http pattern="/images/**" security="none" />
+	<http pattern="/js/**" security="none" />
 		
 	<http auto-config='true'>
-    <intercept-url pattern="/**" access="ROLE_USER" />
+    	<intercept-url pattern="/**" access="ROLE_USER" />
+    	<http-basic />
+    	<session-management>
+       	 <concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+  		</session-management>
   	</http>
   	
   	<authentication-manager>

@@ -16,6 +16,13 @@
 	</properties>
 	
 	<dependencies>
+		<!-- Test -->
+		<dependency>
+ 			 <groupId>org.testng</groupId>
+ 			 <artifactId>testng</artifactId>
+ 			 <version>6.5.2</version>
+ 			 <scope>test</scope>
+		</dependency>
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -51,6 +58,22 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- Spring JPA -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.0.3.RELEASE</version>
+		</dependency>
 		<!-- Spring Security -->
 		<dependency>
  			 <groupId>org.springframework.security</groupId>
@@ -72,15 +95,29 @@
 		<!-- Hibernate  -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
+			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.1.2.Final</version>
 		</dependency>
+		<!-- implementation of javax.validation in javaEE 6 -->
+		<dependency>
+   			<groupId>org.hibernate</groupId>
+   			<artifactId>hibernate-validator</artifactId>
+   			<version>4.3.0.Final</version>
+    		<scope>runtime</scope>
+  		</dependency>
 		<!-- JavaEE -->
 		<dependency>
   		  <groupId>javax</groupId>
   		  <artifactId>javaee-api</artifactId>
   		  <version>6.0</version>
-  		  <scope>provided</scope>
+  		  <scope>provided</scope> 
+		</dependency>
+		
+		<!-- HSQL, in memory DB -->
+		<dependency>
+  			<groupId>org.hsqldb</groupId>
+  			<artifactId>hsqldb</artifactId>
+ 			 <version>2.2.8</version>
 		</dependency>
 	</dependencies>
 	
@@ -103,6 +140,58 @@
 				<configuration>
 					<encoding>UTF-8</encoding>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>8.1.0.RC2</version>
+				<configuration>
+					<stopPort>9999</stopPort>
+					<stopKey>stop-jetty-for-it</stopKey>
+					<systemProperties>
+						<systemProperty>
+							<name>spring.profiles.active</name>
+							<value>dev2</value>
+						</systemProperty>
+					</systemProperties>
+					<webApp>
+						<contextPath>/huamuzhen</contextPath>
+					</webApp>
+					<jettyXml>${basedir}/src/test/resources/jetty.xml</jettyXml>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start-jetty</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<daemon>true</daemon>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-jetty</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.8</version>
+				<executions>
+					<execution>
+						<id>run-integration-test</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>      
         <finalName>huamuzhen</finalName>

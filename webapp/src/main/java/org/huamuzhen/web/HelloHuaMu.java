@@ -1,11 +1,14 @@
 package org.huamuzhen.web;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 public class HelloHuaMu {
 	
 	public static Logger logger= LoggerFactory.getLogger(HelloHuaMu.class); 
+	
 
 	/**
 	 * @param args

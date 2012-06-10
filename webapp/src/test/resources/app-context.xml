@@ -16,8 +16,7 @@
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd 
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		" >
-	<import resource="security-context.xml" />
-	<import resource="mvc-context.xml" />
+		
   
    <bean id="entityManagerFactory"
        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
@@ -39,7 +38,7 @@
     
     <!-- default dataSource -->
      <jdbc:embedded-database id="dataSource" type="HSQL">
-    	   <jdbc:script location="classpath:huamuzhen-test2.sql"/> 
+    	   <jdbc:script location="classpath:huamuzhen-test.sql"/> 
 	</jdbc:embedded-database> 
 	
 	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -58,6 +57,13 @@
         <jdbc:embedded-database id="dataSource" type="HSQL" >
              <jdbc:script location="classpath:huamuzhen-test.sql"/> 
         </jdbc:embedded-database>
-    </beans>	
+    </beans>
+    
+    <beans profile="dev2">
+        <jdbc:embedded-database id="dataSource" type="HSQL" >
+             <jdbc:script location="classpath:huamuzhen-test2.sql"/> 
+        </jdbc:embedded-database>
+    </beans>
+	
 		
 </beans>
