@@ -11,17 +11,17 @@
     <intercept-url pattern="/**" access="ROLE_USER" />
   	</http>
   	
-<!--   	<authentication-manager>
+  	<authentication-manager>
      <authentication-provider>
       <user-service>
         <user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
         <user name="bob" password="bobspassword" authorities="ROLE_USER" />
       </user-service>
      </authentication-provider>
-   </authentication-manager>	 -->
+   </authentication-manager>	
    
    
-   <authentication-manager>
+<!--    <authentication-manager>
 	        <ldap-authentication-provider  
 	        		user-search-filter="(uid={0})" 
 	        		user-search-base="ou=users"
@@ -30,10 +30,10 @@
 	        		group-role-attribute="cn"
 	        		role-prefix="ROLE_">
 	        </ldap-authentication-provider>
-	</authentication-manager>
+	</authentication-manager> -->
 	
 	<!-- Use an embedded LDAP server. We need to declare the location of the LDIF file
-			We also need to customize the root attribute default is "dc=springframework,dc=org"  -->
-	<ldap-server ldif="classpath:mojo.ldif"  root="o=mojo"/>	
+			We also need to customize the root attribute default is "dc=springframework,dc=org"  
+	<ldap-server ldif="classpath:mojo.ldif"  root="o=mojo"/>	-->
 		
 </beans:beans>
