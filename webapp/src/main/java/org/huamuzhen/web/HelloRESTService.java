@@ -6,7 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 
-@Path("/hello")
+@Path("/")
 public interface HelloRESTService {
 	
 	@GET

@@ -1,11 +1,7 @@
 package org.huamuzhen.web;
 
-import javax.ws.rs.core.Response;
-
-import org.apache.cxf.binding.BindingFactoryManager;
-import org.apache.cxf.jaxrs.JAXRSBindingFactory;
-import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.huamuzhen.dto.ErrorDTO;
 import org.testng.annotations.Test;
 
 public class RESTServiceTest {
@@ -13,9 +9,9 @@ public class RESTServiceTest {
 	@Test
 	public void test(){
 		WebClient client = WebClient.create("http://localhost:8080/huamuzhen/rest/hello");
-		Response data = client.path("/").type("text/plain").accept("text/plain").get();
+	/*	String data = client.path("rest/hello").type("text/plain").accept("text/plain").get(String.class);
 		
-		/*JAXRSClientFactoryBean sf = new JAXRSClientFactoryBean();
+		JAXRSClientFactoryBean sf = new JAXRSClientFactoryBean();
 		sf.setResourceClass(HelloRESTService.class);
 		sf.setAddress("http://localhost:8080/huamuzhen/rest/");
 		BindingFactoryManager manager = sf.getBus().getExtension(BindingFactoryManager.class);
@@ -24,9 +20,19 @@ public class RESTServiceTest {
 		manager.registerBindingFactory(JAXRSBindingFactory.JAXRS_BINDING_ID, factory);
 		HelloRESTService service = sf.create(HelloRESTService.class);
 		WebClient wc = sf.createWebClient();
-		Response data = wc.path("/hello").accept("text/plain").get();*/
+		Response data = wc.path("/hello").accept("text/plain").get();
 		System.out.println(data.getStatus());
-		System.out.println(data.getEntity());
+		System.out.println(data.getEntity().toString());
+		System.out.println(data);*/
+		
+/*		Response data2 = client.path("rest/hello").type("text/plain").accept("text/plain").get();
+		System.out.println(data2.getClass());
+		System.out.println(data2.getEntity());
+		System.out.println();*/
+		
+		ErrorDTO data1 = client.path("update").type("application/json").invoke("PUT",null,ErrorDTO.class);
+		System.out.println(data1.getCode());
+		System.out.println(data1.getStatus());
 
 	}
 
