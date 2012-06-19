@@ -16,13 +16,7 @@
 		
   <context:component-scan base-package="org.huamuzhen"/>
   
-  <!--  <import resource="security-context.xml"/> -->
-  
-  <jaxrs:server id="helloService" address="/hello" >
-  	<jaxrs:serviceBeans>
-  		<ref bean="helloRESTService" />
-  	</jaxrs:serviceBeans>
-  </jaxrs:server>
+   <import resource="security-context.xml"/>  
   
 		
 </beans>
